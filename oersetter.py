@@ -84,7 +84,7 @@ if 'VIRTUAL_ENV' in os.environ:
         ADMINS = ['proycon','antalb','wstoop']
 
 
-        BASEDIR = "/var/www/oersetter/live/repo/fryskemt"
+        BASEDIR = "/var/www/webservices-lst/live/repo/oersetter-webservice"
         MTSYSTEM_NLFY_HOST = 'localhost'
         MTSYSTEM_NLFY_PORT = 2003
         MTSYSTEM_FYNL_HOST = 'localhost'
@@ -251,7 +251,7 @@ PROFILES = [
 #                        (set to "anonymous" if there is none)
 #     $PARAMETERS      - List of chosen parameters, using the specified flags
 #
-COMMAND = BASEDIR + "/webservice/oersetter_wrapper.py $DATAFILE $STATUSFILE $OUTPUTDIRECTORY " + MTSYSTEM_NLFY_HOST + ' ' + str(MTSYSTEM_NLFY_PORT) + ' ' + MTSYSTEM_FYNL_HOST + ' ' + str(MTSYSTEM_FYNL_PORT)
+COMMAND = BASEDIR + "/oersetter_wrapper.py $DATAFILE $STATUSFILE $OUTPUTDIRECTORY " + MTSYSTEM_NLFY_HOST + ' ' + str(MTSYSTEM_NLFY_PORT) + ' ' + MTSYSTEM_FYNL_HOST + ' ' + str(MTSYSTEM_FYNL_PORT)
 
 # ======== PARAMETER DEFINITIONS ===========
 
