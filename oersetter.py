@@ -56,7 +56,7 @@ if 'VIRTUAL_ENV' in os.environ:
     PORT = 8080
 
     if host == 'mlp01': #configuration for server in Nijmegen
-        HOST = "new.webservices-lst.science.ru.nl"
+        HOST = "webservices-lst.science.ru.nl"
         URLPREFIX = 'oersetter'
 
 
