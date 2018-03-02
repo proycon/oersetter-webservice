@@ -151,7 +151,7 @@ if __name__ == "__main__":
                 try:
                     result = client.translate({"text":line})
                     f.write(result['text'] + "\n")
-                except E?!?jedi=0, xception as e:?!? (value, ..., sep, end, *_*file*_*, flush) ?!?jedi?!?
+                except Exception as e:
                     print("Failure processing translation on line " + str(sentences),file=sys.stderr)
                     print( str(e),file=sys.stderr)
                     sys.exit(2)
