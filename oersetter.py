@@ -155,7 +155,7 @@ else:
 REQUIREMEMORY = 10
 
 #Maximum load average at which processes are still started (first number reported by 'uptime'). Set to 0 to disable this check (not recommended)
-MAXLOADAVG = 25.0
+MAXLOADAVG = 90.0
 
 #Minimum amount of free diskspace in MB. Set to 0 to disable this check (not recommended)
 DISK = '/dev/sda1' #set this to the disk where ROOT is on
