@@ -1,0 +1,76 @@
+{
+    "@context": [
+        "https://doi.org/10.5063/schema/codemeta-2.0",
+        "http://schema.org",
+        {
+            "entryPoints": { "@reverse": "schema:actionApplication" },
+            "interfaceType": { "@id": "codemeta:interfaceType" }
+        }
+    ],
+    "@type": "SoftwareSourceCode",
+    "identifier": "oersetter-webservice",
+    "name": "Oersetter",
+    "version": "1.0",
+    "description": "A Frisian-Dutch and Dutch-Frisian Machine Translation system",
+    "license": "AGPLv3",
+	"url": "https://taalweb.frl/oersetter",
+    "producer": {
+        "@id": "https://www.ru.nl/clst",
+        "@type": "Organization",
+        "name": "Centre for Language and Speech Technology",
+        "url": "https://www.ru.nl/clst",
+        "parentOrganization": {
+            "@id": "https://www.ru.nl/cls",
+            "@type": "Organization",
+            "name": "Centre for Language Studies",
+            "url": "https://www.ru.nl/cls",
+            "parentOrganization": {
+                "@id": "https://www.ru.nl",
+                "name": "Radboud University",
+                "@type": "Organization",
+                "url": "https://www.ru.nl",
+                "location": {
+                    "@type": "Place",
+                    "name": "Nijmegen"
+                }
+            }
+
+        }
+    },
+    "author": [
+		{
+			"@type": "Person",
+			"givenName": "Maarten",
+			"familyName": "van Gompel",
+			"email": "proycon@anaproy.nl",
+			"affiliation": { "@id": "https://www.ru.nl/clst" }
+		}
+	],
+	"sourceOrganization": { "@id": "https://www.ru.nl/clst" },
+	"operatingSystem": "POSIX",
+	"codeRepository": "https://github.com/proycon/oersetter-webservice",
+    "softwareRequirements": [
+        {
+			"@type": "SoftwareApplication",
+			"identifier": "moses",
+			"name": "moses"
+		}
+	],
+    "funder": {
+        "@type": "Organization",
+        "name": "Fryske Akademy",
+        "url": "https://www.fryske-akademy.nl"
+    },
+	"readme": "https://github.com/proycon/oersetter-webservice/blob/master/README.md",
+	"issueTracker": "https://github.com/proycon/oersetter-webservice/issues",
+	"developmentStatus": "inactive",
+	"keywords":  [ "nlp", "speech recognition", "dutch" ],
+	"dateCreated": "2012-01-01",
+    "entryPoints": [
+        {
+         "@type": "EntryPoint",
+          "urlTemplate": "https://taalweb.frl/oersetter",
+          "interfaceType": "WUI"
+        }
+   ]
+}
