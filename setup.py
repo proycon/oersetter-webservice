@@ -18,7 +18,7 @@ setup(
     description = ("Frisian Dutch Machine Translation Webservice"),
     license = "AGPLv3",
     keywords = "clam webservice rest nlp computational_linguistics rest",
-    url = "https://github.com/proycon/oersetter/webservice",
+    url = "https://github.com/proycon/oersetter-webservice",
     packages=['oersetter'],
     long_description=read('README.md'),
     classifiers=[
@@ -31,7 +31,7 @@ setup(
         "Intended Audience :: Science/Research",
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
     ],
-    package_data = {'oersetter':['*.sh','*.wsgi','*.yml'] },
+    package_data = {'oersetter':['*.wsgi','*.yml'] },
     include_package_data=True,
     install_requires=['CLAM >= 2.3']
 )
