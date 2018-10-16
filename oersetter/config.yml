@@ -1,0 +1,6 @@
+root: "{{VIRTUAL_ENV}}/oersetter.clam"
+port: 8802
+mtsystem_nlfy_host: 'localhost'
+mtsystem_nlfy_port: 2003
+mtsystem_fynl_host: 'localhost'
+mtsystem_fynl_port: 2002

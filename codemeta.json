@@ -10,7 +10,7 @@
     "@type": "SoftwareSourceCode",
     "identifier": "oersetter-webservice",
     "name": "Oersetter",
-    "version": "1.0",
+    "version": "1.1",
     "description": "A Frisian-Dutch and Dutch-Frisian Machine Translation system",
     "license": "AGPLv3",
 	"url": "https://taalweb.frl/oersetter",

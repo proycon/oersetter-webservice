@@ -28,11 +28,15 @@ import os
 host = os.uname()[1]
 
 
-REQUIRE_VERSION = 0.9
+REQUIRE_VERSION = 2.3
 
-# ======== GENERAL INFORMATION ===========
 
-# General information concerning your system.
+CLAMDIR = clam.__path__[0] #directory where CLAM is installed, detected automatically
+WEBSERVICEDIR = os.path.dirname(os.path.abspath(__file__)) #directory where this webservice is installed, detected automatically
+
+# ======== general INFORMATION ===========
+
+# gENERAL INFORMATion concerning your system.
 
 
 #The System ID, a short alphanumeric identifier for internal use only
@@ -43,6 +47,9 @@ SYSTEM_NAME = "Oersetter"
 
 #An informative description for this system (this should be fairly short, about one paragraph, and may not contain HTML)
 SYSTEM_DESCRIPTION = "Frysk-Nederlânske oersetter / Fries-Nederlands vertaalsysteem"
+
+#Load external configuration file (may be host-specific)
+loadconfig(__name__)
 
 # ======== LOCATION ===========
 
@@ -85,40 +92,6 @@ if 'VIRTUAL_ENV' in os.environ:
 
 
         BASEDIR = "/var/www/webservices-lst/live/repo/oersetter-webservice"
-        MTSYSTEM_NLFY_HOST = 'localhost'
-        MTSYSTEM_NLFY_PORT = 2003
-        MTSYSTEM_FYNL_HOST = 'localhost'
-        MTSYSTEM_FYNL_PORT = 2002
-    elif host == 'applejack': #configuration for server in Nijmegen
-        HOST = "webservices-lst.science.ru.nl"
-        URLPREFIX = 'oersetter'
-
-
-        if not 'CLAMTEST' in os.environ:
-            ROOT = "/scratch2/www/webservices-lst/live/writable/oersetter/"
-            if 'CLAMSSL' in os.environ:
-                PORT = 443
-            else:
-                PORT = 80
-        else:
-            ROOT = "/scratch2/www/webservices-lst/test/writable/oersetter/"
-            PORT = 81
-
-        USERS_MYSQL = {
-            'host': 'mysql-clamopener.science.ru.nl',
-            'user': 'clamopener',
-            'password': D(open(os.environ['CLAMOPENER_KEYFILE']).read().strip()),
-            'database': 'clamopener',
-            'table': 'clamusers_clamusers'
-        }
-        DEBUG = False
-        REALM = "WEBSERVICES-LST"
-        DIGESTOPAQUE = open(os.environ['CLAM_DIGESTOPAQUEFILE']).read().strip()
-        SECRETKEY = open(os.environ['CLAM_SECRETKEYFILE']).read().strip()
-        ADMINS = ['proycon','antalb','wstoop']
-
-
-        BASEDIR = "/scratch2/www/webservices-lst/live/repo/fryskemt"
         MTSYSTEM_NLFY_HOST = 'localhost'
         MTSYSTEM_NLFY_PORT = 2003
         MTSYSTEM_FYNL_HOST = 'localhost'
@@ -251,7 +224,7 @@ PROFILES = [
 #                        (set to "anonymous" if there is none)
 #     $PARAMETERS      - List of chosen parameters, using the specified flags
 #
-COMMAND = BASEDIR + "/oersetter_wrapper.py $DATAFILE $STATUSFILE $OUTPUTDIRECTORY " + MTSYSTEM_NLFY_HOST + ' ' + str(MTSYSTEM_NLFY_PORT) + ' ' + MTSYSTEM_FYNL_HOST + ' ' + str(MTSYSTEM_FYNL_PORT)
+COMMAND = WEBSERVICEDIR + "/oersetter_wrapper.py $DATAFILE $STATUSFILE $OUTPUTDIRECTORY " + MTSYSTEM_NLFY_HOST + ' ' + str(MTSYSTEM_NLFY_PORT) + ' ' + MTSYSTEM_FYNL_HOST + ' ' + str(MTSYSTEM_FYNL_PORT)
 
 # ======== PARAMETER DEFINITIONS ===========
 
