@@ -56,49 +56,6 @@ loadconfig(__name__)
 #The root directory for CLAM, all project files, (input & output) and
 #pre-installed corpora will be stored here. Set to an absolute path:
 
-USERS = None
-
-if 'VIRTUAL_ENV' in os.environ:
-    ROOT = os.environ['VIRTUAL_ENV'] + "/oersetter.clam/"
-    PORT = 8080
-
-    if host == 'mlp01': #configuration for server in Nijmegen
-        HOST = "webservices-lst.science.ru.nl"
-        URLPREFIX = 'oersetter'
-
-
-        if not 'CLAMTEST' in os.environ:
-            ROOT = "/var/www/webservices-lst/live/writable/oersetter/"
-            if 'CLAMSSL' in os.environ:
-                PORT = 443
-            else:
-                PORT = 80
-        else:
-            ROOT = "/var/www/webservices-lst/test/writable/oersetter/"
-            PORT = 81
-
-        USERS_MYSQL = {
-            'host': 'mysql-clamopener.science.ru.nl',
-            'user': 'clamopener',
-            'password': D(open(os.environ['CLAMOPENER_KEYFILE']).read().strip()),
-            'database': 'clamopener',
-            'table': 'clamusers_clamusers'
-        }
-        DEBUG = False
-        REALM = "WEBSERVICES-LST"
-        DIGESTOPAQUE = open(os.environ['CLAM_DIGESTOPAQUEFILE']).read().strip()
-        SECRETKEY = open(os.environ['CLAM_SECRETKEYFILE']).read().strip()
-        ADMINS = ['proycon','antalb','wstoop']
-
-
-        BASEDIR = "/var/www/webservices-lst/live/repo/oersetter-webservice"
-        MTSYSTEM_NLFY_HOST = 'localhost'
-        MTSYSTEM_NLFY_PORT = 2003
-        MTSYSTEM_FYNL_HOST = 'localhost'
-        MTSYSTEM_FYNL_PORT = 2002
-else:
-    raise Exception("I don't know where I'm running from!")
-
 #The hostname of the system. Will be automatically determined if not set. (If you start clam with the built-in webserver, you can override this with -H)
 #Users *must* make use of this hostname and no other (even if it points to the same IP) for the web application to work.
 #HOST = 'localhost'
