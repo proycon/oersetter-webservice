@@ -34,6 +34,22 @@ def total_seconds(delta):
 #########################################################################################################
 
 
+def singlewordpatch(filename):
+    """If the file contains only a single word, add a period. This is a quick patch to fix single-word translation that fails for some reason"""
+    singleword = True
+    firstline = []
+    with open(filename,'r',encoding='utf-8') as f:
+        for line in f:
+            if firstline:
+                return False
+            firstline = line.strip().split(' ')
+    if len(firstline) == 1:
+        with open(filename,'w',encoding='utf-8') as f:
+            f.write(" ".join(firstline) + " .\n")
+        return True
+    return False
+
+
 if __name__ == "__main__":
 
     #this script takes three arguments from CLAM: $DATAFILE $STATUSFILE $OUTPUTDIRECTORY  (as configured at COMMAND= in the service configuration file)
@@ -112,6 +128,7 @@ if __name__ == "__main__":
                 sys.exit(1)
             f = open(outputfile,'w',encoding='utf-8')
             sentences = 0
+            singlewordpatch(str(inputfile)+extraext)
             f_in = open(str(inputfile)+ extraext,'r',encoding='utf-8')
             for line in f_in:
                 sentences += 1
@@ -144,6 +161,7 @@ if __name__ == "__main__":
                 sys.exit(1)
 
             f = open(outputfile,'w',encoding='utf-8')
+            singlewordpatch(str(inputfile)+extraext)
             f_in = open(str(inputfile)+ extraext,'r',encoding='utf-8')
             sentences = 0
             for line in f_in:
