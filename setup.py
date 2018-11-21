@@ -12,7 +12,7 @@ def read(fname):
 
 setup(
     name = "Oersetter",
-    version = "1.1.1",
+    version = "1.1.2",
     author = "Maarten van Gompel",
     author_email = "proycon@anaproy.nl",
     description = ("Frisian Dutch Machine Translation Webservice"),

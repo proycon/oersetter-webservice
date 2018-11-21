@@ -49,6 +49,25 @@ def singlewordpatch(filename):
         return True
     return False
 
+def translate(client, inputfile, outputfile):
+    f = open(outputfile,'w',encoding='utf-8')
+    f_in = open(inputfile,'r',encoding='utf-8')
+    sentences = 0
+    for line in f_in:
+        sentences += 1
+        try:
+            result = client.translate({"text":line.strip()})
+            f.write(result['text'].strip() + "\n")
+        except Exception as e:
+            print("Failure processing translation on line " + str(sentences),file=sys.stderr)
+            print( str(e),file=sys.stderr)
+            sys.exit(2)
+    f_in.close()
+    f.close()
+    d = total_seconds(datetime.datetime.now() - begintime)
+    if sentences:
+        print( "Translation took " + str(d) + 's (average' + str(d/float(sentences)) + 's per sentence)',file=sys.stderr)
+
 
 if __name__ == "__main__":
 
@@ -126,25 +145,8 @@ if __name__ == "__main__":
                 print("De interne vertaalserver (Nederlands-Fries) is niet bereikbaar",file=sys.stderr)
                 print( str(e),file=sys.stderr)
                 sys.exit(1)
-            f = open(outputfile,'w',encoding='utf-8')
-            sentences = 0
-            singlewordpatch(str(inputfile)+extraext)
-            f_in = open(str(inputfile)+ extraext,'r',encoding='utf-8')
-            for line in f_in:
-                sentences += 1
-                failed = False
-                try:
-                    result = client.translate({"text":line})
-                    f.write(result['text'] + "\n")
-                except Exception as e:
-                    print("Failure processing translation on line " + str(sentences),file=sys.stderr)
-                    print( str(e),file=sys.stderr)
-                    sys.exit(2)
-            f_in.close()
-            f.close()
-            d = total_seconds(datetime.datetime.now() - begintime)
-            if sentences:
-                print( "Translation took " + str(d) + 's (average' + str(d/float(sentences)) + 's per sentence)',file=sys.stderr)
+
+            translate(client, str(inputfile)+ extraext, outputfile)
 
         elif str(inputfile)[-7:] == '.fy.txt':
             print( "*** STARTING SYSTEM (FY-NL) FOR " + os.path.basename(str(inputfile)) + " ***",file=sys.stderr)
@@ -160,24 +162,7 @@ if __name__ == "__main__":
                 print( str(e),file=sys.stderr)
                 sys.exit(1)
 
-            f = open(outputfile,'w',encoding='utf-8')
-            singlewordpatch(str(inputfile)+extraext)
-            f_in = open(str(inputfile)+ extraext,'r',encoding='utf-8')
-            sentences = 0
-            for line in f_in:
-                sentences += 1
-                try:
-                    result = client.translate({"text":line})
-                    f.write(result['text'] + "\n")
-                except Exception as e:
-                    print("Failure processing translation on line " + str(sentences),file=sys.stderr)
-                    print( str(e),file=sys.stderr)
-                    sys.exit(2)
-            f_in.close()
-            f.close()
-            d = total_seconds(datetime.datetime.now() - begintime)
-            if sentences:
-                print( "Translation took " + str(d) + 's (average' + str(d/float(sentences)) + 's per sentence)',file=sys.stderr)
+            translate(client, str(inputfile)+ extraext, outputfile)
 
 
     #A nice status message to indicate we're done
