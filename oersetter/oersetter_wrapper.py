@@ -34,21 +34,6 @@ def total_seconds(delta):
 #########################################################################################################
 
 
-def singlewordpatch(filename):
-    """If the file contains only a single word, add a period. This is a quick patch to fix single-word translation that fails for some reason"""
-    singleword = True
-    firstline = []
-    with open(filename,'r',encoding='utf-8') as f:
-        for line in f:
-            if firstline:
-                return False
-            firstline = line.strip().split(' ')
-    if len(firstline) == 1:
-        with open(filename,'w',encoding='utf-8') as f:
-            f.write(" ".join(firstline) + " .\n")
-        return True
-    return False
-
 def translate(client, inputfile, outputfile):
     f = open(outputfile,'w',encoding='utf-8')
     f_in = open(inputfile,'r',encoding='utf-8')
